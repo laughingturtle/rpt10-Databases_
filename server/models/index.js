@@ -11,22 +11,22 @@ module.exports = {
         // console.log(result);
           cb(null, result);
         } // pass result through to controller into an array.
-       // model.messages.get(null, result);
+        // model.messages.get(null, result);
       });
     }, // a function which produces all the messages
     post: function () {
       db.connection.query('INSERT INTO messages (message_text, user_id, room_id) VALUES (text, user_id, room_id', function(err, result){
-        if (err) throw err;
+        if (err) {throw err;}
         return result;
       }); // a function which can be used to insert a message into the database
     },
 
-  users: {
+    users: {
     // Ditto as above.
-    get: function () {}, //Select from database
-    post: function () {} //Insert into database
-  }
-}};
+      get: function () {}, //Select from database
+      post: function () {} //Insert into database
+    }
+  }};
 
 
 /*

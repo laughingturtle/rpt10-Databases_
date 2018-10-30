@@ -9,9 +9,9 @@ module.exports = {
         if (err) {
           throw err;
         } else {
-         res.send(result);
+          res.send(result);
         }
-      })
+      });
     // invoke a func in model and pass in a call back to the response in line 5.
     }, // a function which handles a get request for all messages
     post: function (req, res) {
