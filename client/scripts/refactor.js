@@ -22,7 +22,7 @@
 
 app = {
 
-  server: 'http://parse.CAMPUS.hackreactor.com/chatterbox/classes/messages',
+  server: 'http://127.0.0.1:3000/classes/messages',
 
   init: function() {
     // Get username
@@ -76,7 +76,7 @@ app = {
   loadMsgs: function() {
     $.ajax({
       url: app.server,
-      data: { order: '-createdAt' },
+      // datsa: { order: '-createdAt' },
       contentType: 'application/json',
       success: function(json) {
         app.displayMessages(json.results);
