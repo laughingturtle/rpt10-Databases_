@@ -2,30 +2,56 @@
 var db = require('../db');
 
 module.exports = {
+
+  users: {
+    get: function (cb) {
+      db.connection.query('SELECT * FROM users ;', function(err, result){
+        if (err){
+          throw err;
+        } else {
+          cb(null, result);
+        }
+      });
+    },
+
+    post: function (user, cb) {
+      console.log('models user name :',user);
+      db.connection.query('INSERT INTO users SET ?', user, function (err, result){
+        if (err){
+          cb(err, null);
+        } else {
+          cb(null, result);
+        }
+      });
+    } //Insert into database
+  },
+
   messages: {
     get: function (cb) {
-      db.connection.query('SELECT * FROM messages', function(err, result){
+      db.connection.query('SELECT * FROM messages;', function(err, result){
         if (err) {
-          throw err;
+          cb(err, null);
         } else {
         // console.log(result);
           cb(null, result);
-        } // pass result through to controller into an array.
-        // model.messages.get(null, result);
+        }
       });
-    }, // a function which produces all the messages
-    post: function () {
-      db.connection.query('INSERT INTO messages (message_text, user_id, room_id) VALUES (text, user_id, room_id', function(err, result){
-        if (err) {throw err;}
-        return result;
-      }); // a function which can be used to insert a message into the database
     },
 
-    users: {
-    // Ditto as above.
-      get: function () {}, //Select from database
-      post: function () {} //Insert into database
+    post: function (message, cb) {
+      console.log('our message in model: ', message);
+
+      db.connection.query('INSERT INTO messages SET ?', message , function(err, result){
+        if (err) {
+          cb(err, null);
+        } else{
+          cb(null, result);
+          console.log('this data has posted: ', result);
+        }
+      });
     }
+
+
   }};
 
 
